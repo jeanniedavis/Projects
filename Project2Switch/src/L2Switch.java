@@ -28,19 +28,21 @@ public class L2Switch
 		//				String line2 = Files.readAllLines(Paths.get(csvFile)).get(2);
 		//System.out.println(br.readLine());
 		//System.out.println(" "+pktCounter +" "+br.readLine());
-		String csvFile = "E:/Users/Vivek/Workspace/Project2Switch/src/packets.csv";
+		String csvFile = "packets.csv";
 		String line = "";
 
 		try {
 			FileReader readfile = new FileReader(csvFile);
 			BufferedReader br = new BufferedReader(readfile);
 			System.out.println("pkt "+pktCounter  + " port 0 " + " port1 " + " port 2 " + " port3 ");
+			line =br.readLine();
 			while((line =br.readLine())!= null)
 			{
 				String[] cols = line.split(csvFile);
 				String getString= cols[0].toString();
 				String getSource="";
 				int getDest=0;
+				
 				for(int i =0; i<getString.length(); i++)
 				{
 					if(getString.charAt(i) == ',')
@@ -59,8 +61,7 @@ public class L2Switch
 						getDest=getString.indexOf(i, getString.length());
 					}
 				}
-				for(int i =0; i<50; i++)
-				{
+				
 					for(int j =0; j<3; j++)
 					{
 						if(mACtable[0] ==0)
@@ -106,12 +107,10 @@ public class L2Switch
 						}
 
 					}
+					pktCounter++;
 
 
 				}
-				pktCounter++;
-
-			}
 
 
 		}catch (IOException e)
